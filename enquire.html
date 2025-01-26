@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #94c1f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .feedback-form {
+            background: linear-gradient(135deg, #ebeced, #8f9092);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 450px;
+            color: #000000;
+        }
+
+        .feedback-form h2 {
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .feedback-form .form-group {
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .feedback-form .form-group i {
+            position: absolute;
+            top: 14px;
+            right: 10px;
+            color: #555;
+            font-size: 18px;
+        }
+
+        .feedback-form input,
+        .feedback-form textarea {
+            width: 90%;
+            padding: 10px 10px 10px 35px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .feedback-form input {
+            box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .feedback-form textarea {
+            resize: none;
+            height: 100px;
+            box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .feedback-form button {
+            width: 100%;
+            background: #2eff51;
+            color: rgb(11, 11, 11);
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+        }
+
+        .feedback-form button:hover {
+            background: #1bc266;
+        }
+
+        .error-message {
+            color: #ff0202;
+            font-size: 12px;
+            margin-top: -12px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <form class="feedback-form" id="feedbackForm" action="submit_feedback.php" method="POST" novalidate>
+        <h2>Feedback Form</h2>
+
+        <div class="form-group">
+            <i class="fas fa-user"></i>
+            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+            <div class="error-message" id="nameError"></div>
+        </div>
+
+        <div class="form-group">
+            <i class="fas fa-envelope"></i>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            <div class="error-message" id="emailError"></div>
+        </div>
+
+        <div class="form-group">
+            <i class="fas fa-phone"></i>
+            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+            <div class="error-message" id="phoneError"></div>
+        </div>
+
+        <div class="form-group">
+            <i class="fas fa-comment-dots"></i>
+            <textarea id="message" name="message" placeholder="Enter your feedback" required></textarea>
+            <div class="error-message" id="messageError"></div>
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        // JavaScript Validation
+        document.getElementById('feedbackForm').addEventListener('submit', function (event) {
+            let isValid = true;
+
+            // Name Validation
+            const name = document.getElementById('name').value.trim();
+            if (name === '') {
+                isValid = false;
+                document.getElementById('nameError').textContent = "Name is required.";
+            } else {
+                document.getElementById('nameError').textContent = "";
+            }
+
+            // Email Validation
+            const email = document.getElementById('email').value.trim();
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            if (!emailPattern.test(email)) {
+                isValid = false;
+                document.getElementById('emailError').textContent = "Enter a valid email address.";
+            } else {
+                document.getElementById('emailError').textContent = "";
+            }
+
+            // Phone Validation
+            const phone = document.getElementById('phone').value.trim();
+            const phonePattern = /^[0-9]{10}$/;
+            if (!phonePattern.test(phone)) {
+                isValid = false;
+                document.getElementById('phoneError').textContent = "Enter a valid 10-digit phone number.";
+            } else {
+                document.getElementById('phoneError').textContent = "";
+            }
+
+            // Message Validation
+            const message = document.getElementById('message').value.trim();
+            if (message === '') {
+                isValid = false;
+                document.getElementById('messageError').textContent = "Message cannot be empty.";
+            } else {
+                document.getElementById('messageError').textContent = "";
+            }
+
+            if (!isValid) {
+                event.preventDefault();
+            }
+        });
+    </script>
+
+</body>
+</html>
