@@ -1,86 +1,135 @@
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Landing Page with Navbar and Cards</title>
-      <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-      <!-- Navigation Bar -->
-      <nav class="navbar">
-          <div class="logo">MySite</div>
-          <ul class="nav-links">
-              <li><a href="#">Home</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Services</a></li>
-              <li><a href="#">Contact</a></li>
-          </ul>
-      </nav>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page with Navbar and Cards</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .container {
+            padding: 20px;
+        }
 
-      <!-- Main Section with Two Cards -->
-      <div class="container">
+        .card-deck {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
 
-          <!-- Card deck -->
-          <div class="card-deck row">
-          
-            <div class="col-xs-12 col-sm-6 col-md-4">
-            <!-- Card -->
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            max-width: 300px;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 15px;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .card-text {
+            font-size: 14px;
+            line-height: 1.5;
+            max-height: 84px; /* Approx height for 4 lines */
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .card-text.expanded {
+            max-height: none;
+        }
+
+        .read-more {
+            color: blue;
+            cursor: pointer;
+            font-size: 14px;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">MySite</div>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Section with Two Cards -->
+    <div class="container">
+        <!-- Card deck -->
+        <div class="card-deck">
+            <!-- Card 1 -->
             <div class="card">
-          
-              <!--Card image-->
-              <div class="view overlay">
-                <img class="card-img-top" src="./staff.jpg" alt="Card image cap">
-                <a href="#!">
-                  <div class="mask rgba-white-slight"></div>
-                </a>
-              </div>
-          
-              <!--Card content-->
-              <div class="card-body">
-          
-                <!--Title-->
-                <h4 class="card-title">Staff</h4>
-                <!--Text-->
-                <p class="card-text">Our dedicated staff members are the backbone of our organization. With a diverse range of expertise, each member brings unique skills and passion to their role. From customer service to project management, our team is committed to providing exceptional support and services. Learn more about our team and their roles in delivering excellence!</p>
-                <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
                 <a href="staff.html">
-                  <button type="button" class="btn btn-light-blue btn-md">Read more</button>
+                    <img class="card-img-top" src="./staff.jpg" alt="Card image cap">
                 </a>
-              </div>
-          
+                <div class="card-body">
+                    <h4 class="card-title">Staff</h4>
+                    <p class="card-text">
+                        Our dedicated staff members are the backbone of our organization. With a diverse range of expertise, each member brings unique skills and passion to their role. From customer service to project management, our team is committed to providing exceptional support and services.
+                    </p>
+                    <span class="read-more" onclick="toggleText(event, this)">Read More</span>
+                </div>
             </div>
-            <!-- Card -->
-            </div>
-          
-            <div class="col-xs-12 col-sm-6 col-md-4">
-            <!-- Card -->
-            <div class="card mb-4">
-          
-              <!--Card image-->
-              <div class="view overlay">
-                <img class="card-img-top" src="./placement.jpg" alt="Card image cap">
-                <a href="#!">
-                  <div class="mask rgba-white-slight"></div>
+
+            <!-- Card 2 -->
+            <div class="card">
+                <a href="placement.html">
+                    <img class="card-img-top" src="./placement.jpg" alt="Card image cap">
                 </a>
-              </div>
-          
-              <!--Card content-->
-              <div class="card-body">
-          
-                <!--Title-->
-                <h4 class="card-title">Placement</h4>
-                <!--Text-->
-                <p class="card-text">Our placement services are designed to help students secure positions in top companies. With a team of dedicated career counselors and industry connections, we guide you through resume building, interview preparation, and networking opportunities to ensure a successful placement experience. Join us and get ready to kickstart your career!</p>
-                <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-                <a href="./placement.html">
-                  <button type="button" class="btn btn-light-blue btn-md">Read more</button>
-                </a>
-          
-              </div>
-          
+                <div class="card-body">
+                    <h4 class="card-title">Placement</h4>
+                    <p class="card-text">
+                        Our placement services are designed to help students secure positions in top companies. With a team of dedicated career counselors and industry connections, we guide you through resume building, interview preparation, and networking opportunities.
+                    </p>
+                    <span class="read-more" onclick="toggleText(event, this)">Read More</span>
+                </div>
             </div>
-            <!-- Card -->
-          </div>       
-  </body>
-  </html>
+        </div>
+    </div>
+
+    <script>
+        function toggleText(event, element) {
+            // Prevent link navigation when the read-more is clicked
+            event.preventDefault();
+
+            const cardText = element.previousElementSibling;
+            const isExpanded = cardText.classList.contains("expanded");
+
+            if (isExpanded) {
+                cardText.classList.remove("expanded");
+                element.innerText = "Read More";
+            } else {
+                cardText.classList.add("expanded");
+                element.innerText = "Show Less";
+            }
+        }
+    </script>
+</body>
+</html>
