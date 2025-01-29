@@ -9,6 +9,7 @@ body {
     font-family: 'Arial', sans-serif;
     background-color: #f4f4f4;
     color: #333;
+    text-decoration: none;
 }
 
 /* Navigation Bar Styles */
@@ -92,29 +93,37 @@ body {
     color: #333;
     text-align: center; /* Center the title */
     margin-bottom: 10px;
+    text-decoration: none;
 }
 
 .card-text {
     font-size: 14px;
     color: #666;
     margin-bottom: 20px;
-    flex-grow: 1; /* Allow the text area to expand */
+    flex-grow: 1; 
+    text-decoration: none;
 }
 
 .card .view {
     position: relative;
+    text-decoration: none;
 }
 
 .card-img-top {
-    width: 100%;
-    height: auto;
     transition: transform 0.5s ease;
+    width: 100%;  /* Ensures the image takes the full width of the card */
+    height: 200px; /* Set a fixed height for uniformity */
+    object-fit: cover;
 }
 
 .card .view:hover .card-img-top {
     transform: scale(1.05);
+    
 }
-
+.card a {
+    text-decoration: none !important;
+    color: inherit;
+}
 .mask {
     position: absolute;
     top: 0;
